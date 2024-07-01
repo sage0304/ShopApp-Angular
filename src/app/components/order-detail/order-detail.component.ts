@@ -1,0 +1,67 @@
+import { Component, OnInit } from '@angular/core';
+import { OrderService } from 'src/app/services/order.service';
+import { environment } from 'src/app/environments/environment';
+import { OrderResponse } from 'src/app/responses/order/order.response';
+
+@Component({
+  selector: 'app-order-detail',
+  templateUrl: './order-detail.component.html',
+  styleUrls: ['./order-detail.component.scss']
+})
+export class OrderDetailComponent implements OnInit{
+  orderResponse: OrderResponse = {
+    id: 0,
+    user_id: 0,
+    fullname: '',
+    phone_number: '',
+    email: '',
+    address: '',
+    note: '',
+    order_date: new Date(),
+    status: '',
+    total_money: 0,
+    shipping_method: '',
+    shipping_address: '',
+    shipping_date: new Date(),
+    payment_method: '',
+    order_details: []
+  };
+
+  constructor(
+    private orderService: OrderService
+  ) { }
+
+  ngOnInit(): void {
+    this.getOrderDetails();
+  }
+
+  getOrderDetails(): void {
+    debugger
+    const orderId = 6;
+    this.orderService.getOrderById(orderId).subscribe({
+      next: (response : any) => {
+        debugger
+        this.orderResponse.id = response.id;
+        this.orderResponse.user_id = response.user_id;
+        this.orderResponse.fullname = response.fullname;
+        this.orderResponse.email = response.email;
+        this.orderResponse.phone_number = response.phone_number;
+        this.orderResponse.address = response.address;
+        this.orderResponse.note = response.note;
+        this.orderResponse.order_date = new Date(
+          response.order_date[0],
+          response.order_date[1] - 1,
+          response.order_date[2]
+        );
+        debugger
+      },
+      complete: () => {
+        debugger
+      },
+      error: (error: any) => {
+        debugger
+        console.error('Error fetching cart items:', error);
+      }
+    });
+  }
+}

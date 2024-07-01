@@ -17,4 +17,8 @@ export class OrderService {
     // Gửi yêu cầu đặt hàng
     return this.http.post(this.apiUrl, orderData);
   }
+
+  getOrderById(orderId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${orderId}`);
+  }
 }

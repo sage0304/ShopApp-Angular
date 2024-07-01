@@ -5,18 +5,20 @@ import { OrderService } from 'src/app/services/order.service';
 import { CartService } from 'src/app/services/cart.service';
 import { environment } from 'src/app/environments/environment';
 import { OrderDTO } from '../../dtos/order/order.dto';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss']
 })
-export class OrderComponent{
+export class OrderComponent implements OnInit{
+  orderForm: FormGroup; // Object FormGroup to manage data in form
   cartItems: {product: Product, quantity: number }[] = [];
   couponCode: string = ''; // Discount code
   totalAmount: number = 0; // Total price
   orderData: OrderDTO = {
-    user_id: 1, 
+    user_id: 5, 
     fullname: '', 
     email: '',
     phone_number: '', 
@@ -32,8 +34,20 @@ export class OrderComponent{
   constructor(
     private cartService: CartService,
     private productService: ProductService,
-    private orderService: OrderService
-  ) {}
+    private orderService: OrderService,
+    private fb: FormBuilder
+  ) {
+    // Create FormGroup and corresponding FormControl
+    this.orderForm = this.fb.group({
+      fullname: ['Phạm Hiền Nhân', Validators.required], // Fullname is required FormControl
+      email: ['hiennhanlonggiang@gmail.com', Validators.email], // Use email validator for email FormControl
+      phone_number: ['0399073831', [Validators.required, Validators.minLength(6)]], // Phone number is required and min length is 6
+      address: ['203 Str.03', [Validators.required, Validators.minLength(5)]], // Address is required and min length is 5
+      note: ['Hang de be'], // Note is optional
+      shipping_method: ['express'],
+      payment_method: ['cod']
+    }); 
+  }
 
   ngOnInit(): void {
     // Get products in cart
@@ -71,6 +85,30 @@ export class OrderComponent{
   }
 
   placeOrder() {
+    debugger
+    if(this.orderForm.valid) {
+      // Method 1: Assign each value from Form into orderData
+      // this.orderData.fullname = this.orderForm.get('fullname')!.value;
+      // this.orderData.email = this.orderForm.get('email')!.value;
+      // this.orderData.phone_number = this.orderForm.get('phone_number')!.value;
+      // this.orderData.address = this.orderForm.get('address')!.value;
+      // this.orderData.note = this.orderForm.get('note')!.value;
+      // this.orderData.shipping_method = this.orderForm.get('shipping_method')!.value;
+      // this.orderData.payment_method = this.orderForm.get('payment_method')!.value;
+
+      // Method 2: 
+      // Use spread (...) operator to copy all properties of orderData to orderForm.value
+      this.orderData = {
+        ...this.orderData,
+        ...this.orderForm.value
+      };
+    }
+
+    this.orderData.cart_items = this.cartItems.map((cartItem) => ({
+      product_id: cartItem.product.id,
+      quantity: cartItem.quantity
+    }));
+
     this.orderService.placeOrder(this.orderData).subscribe({
       next: (response) => {            
         debugger                
