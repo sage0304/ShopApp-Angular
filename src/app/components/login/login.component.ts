@@ -7,11 +7,12 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { LoginResponse } from '../../responses/user/login.response';
 import { Role } from '../../models/role'; // Đường dẫn đến model Role
+import { UserResponse } from 'src/app/responses/user/user.response';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   @ViewChild('loginForm') loginForm!: NgForm;
@@ -22,6 +23,7 @@ export class LoginComponent {
   roles: Role[] = []; // Mảng roles
   rememberMe: boolean = true;
   selectedRole: Role | undefined; // Biến để lưu giá trị được chọn từ dropdown
+  userResponse?:UserResponse
 
   onPhoneNumberChange() {
     console.log(`Phone typed: ${this.phoneNumber}`);
@@ -32,34 +34,34 @@ export class LoginComponent {
     private userService: UserService,
     private tokenService: TokenService,
     private roleService: RoleService
-  ) { }
+  ) {}
 
   ngOnInit() {
     // Gọi API lấy danh sách roles và lưu vào biến roles
-    debugger
+    debugger;
     this.roleService.getRoles().subscribe({
-      next: (roles: Role[]) => { // Sử dụng kiểu Role[]
-        debugger
+      next: (roles: Role[]) => {
+        // Sử dụng kiểu Role[]
+        debugger;
         this.roles = roles;
         this.selectedRole = roles.length > 0 ? roles[0] : undefined;
       },
       error: (error: any) => {
-        debugger
+        debugger;
         console.error('Error getting roles:', error);
-      }
+      },
     });
   }
 
   login() {
-    const message = `phone: ${this.phoneNumber}` +
-      `password: ${this.password}`;
+    const message = `phone: ${this.phoneNumber}` + `password: ${this.password}`;
     //alert(message);
-    debugger
+    debugger;
 
     const loginDTO: LoginDTO = {
       phone_number: this.phoneNumber,
       password: this.password,
-      role_id: this.selectedRole?.id ?? 1
+      role_id: this.selectedRole?.id ?? 1,
     };
     this.userService.login(loginDTO).subscribe({
       next: (response: LoginResponse) => {
@@ -67,8 +69,37 @@ export class LoginComponent {
         const { token } = response;
         if (this.rememberMe) {
           this.tokenService.setToken(token);
-        }                
-        //this.router.navigate(['/login']);
+          this.userService.getUserDetails(token).subscribe({
+            next: (userOfResponse: any) => {
+              debugger;
+              this.userResponse = {
+                // Method 1: assign value one by one
+                // id: userResponse.id,
+                // fullname: userResponse.fullname,
+                // address: userResponse.address,
+                // phone_number: userResponse.phone_number,
+                // active: userResponse.active,
+                // date_of_birth: new Date(userResponse.date_of_birth),
+                // facebook_account_id: userResponse.facebook_account_id,
+                // google_account_id: userResponse.google_account_id,
+                // role: userResponse.role,
+
+                // Method 2: assign value by spread operator
+                ...userOfResponse,
+                date_of_birth: new Date(userOfResponse.date_of_birth),
+              }
+              this.userService.saveUserResponseToLocalStorage(this.userResponse);
+              this.router.navigate(['/']);
+            },
+            complete: () => {
+              debugger;
+            },
+            error: (error: any) => {
+              debugger;
+              alert(error.error.message);
+            },
+          });
+        }
       },
       complete: () => {
         debugger;
@@ -76,7 +107,7 @@ export class LoginComponent {
       error: (error: any) => {
         debugger;
         alert(error.error.message);
-      }
+      },
     });
   }
 }
