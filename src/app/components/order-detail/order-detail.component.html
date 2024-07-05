@@ -44,17 +44,17 @@
                 </thead>
                 <tbody>
                     <ng-container *ngFor="let item of orderResponse.order_details">
-                        <!-- <tr>
+                        <tr>
                             <td>
                                 <div class="product-info">
                                     <img [src]="item.product.thumbnail" alt="Product Image" class="product-image">
                                     <span class="product-name">{{ item.product.name }}</span>
                                 </div>
                             </td>
-                            <td>{{ item.number_of_products }}</td>
+                            <td>{{ item.numberOfProducts }}</td>
                             <td>{{ item.price | number:'1.2-2' }}</td>
-                            <td>{{ (item.total_money) | number:'1.2-2' }}</td>
-                        </tr> -->
+                            <td>{{ (item.totalMoney) | number:'1.2-2' }}</td>
+                        </tr>
                     </ng-container>
                 </tbody>
             </table>

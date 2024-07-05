@@ -24,16 +24,16 @@ export class DetailProductComponent implements OnInit {
     private cartService: CartService,
     // private categoryService: CategoryService,
     // private router: Router,
-    // private activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     ) {
       
     }
     ngOnInit() {
       // Lấy productId từ URL      
-      //const idParam = this.activatedRoute.snapshot.paramMap.get('id');
+      const idParam = this.activatedRoute.snapshot.paramMap.get('id');
       debugger
       //this.cartService.clearCart();
-      const idParam = 6 //fake tạm 1 giá trị
+      // const idParam = 6 //fake tạm 1 giá trị
       if (idParam !== null) {
         this.productId = +idParam;
       }

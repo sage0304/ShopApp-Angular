@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
 import { environment } from 'src/app/environments/environment';
 import { OrderResponse } from 'src/app/responses/order/order.response';
+import { Order } from 'src/app/models/order';
+import { OrderDetail } from 'src/app/models/order.detail';
 
 @Component({
   selector: 'app-order-detail',
@@ -54,6 +56,20 @@ export class OrderDetailComponent implements OnInit{
           response.order_date[2]
         );
         debugger
+        this.orderResponse.order_details = response.order_detail
+        .map((order_detail: OrderDetail) => {
+          order_detail.product.thumbnail = `${environment.apiBaseUrl}/products/images/${order_detail.product.thumbnail}`;
+          return order_detail;
+        });
+        this.orderResponse.payment_method = response.payment_method;
+        this.orderResponse.shipping_method = response.shipping_method;
+        this.orderResponse.status = response.status;
+        this.orderResponse.total_money = response.total_money;
+        this.orderResponse.shipping_date = new Date(
+          response.shipping_date[0],
+          response.shipping_date[1] - 1,
+          response.shipping_date[2]
+        );
       },
       complete: () => {
         debugger

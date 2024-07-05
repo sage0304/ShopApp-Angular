@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from '../../models/product';
 import { Category } from '../../models/category';
 import { ProductService } from 'src/app/services/product.service';
@@ -24,7 +25,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,    
-    // private router: Router
+    private router: Router
     ) {}
 
   ngOnInit() {
@@ -95,6 +96,6 @@ export class HomeComponent implements OnInit {
   onProductClick(productId: number) {
     debugger
     // Điều hướng đến trang detail-product với productId là tham số
-    // this.router.navigate(['/detail-product', productId]);
+    this.router.navigate(['/products', productId]);
   }
 }
