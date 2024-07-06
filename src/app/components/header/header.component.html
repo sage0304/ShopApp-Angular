@@ -44,7 +44,6 @@
                             >
                             <a 
                                 class="nav-link" 
-                                routerLink="/profile" 
                                 [ngbPopover]="popoverContent"
                                 (click)="togglePopover($event)"
                             >
@@ -52,9 +51,9 @@
                             </a>
                                 <ng-template #popoverContent>
                                     <div class="popover-list">
-                                        <a href="#" class="popover-item" (click)="handleItemClick(0)">My account</a>
-                                        <a href="#" class="popover-item" (click)="handleItemClick(1)">Order</a>
-                                        <a href="#" class="popover-item" (click)="handleItemClick(2)">Log out</a>
+                                        <a class="popover-item" (click)="handleItemClick(0)">My account</a>
+                                        <a class="popover-item" (click)="handleItemClick(1)">Order</a>
+                                        <a class="popover-item" (click)="handleItemClick(2)">Log out</a>
                                     </div>
                                 </ng-template>
                             </ng-container>

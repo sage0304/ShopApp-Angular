@@ -39,10 +39,10 @@ export class OrderComponent implements OnInit {
     private orderService: OrderService,
     private tokenService: TokenService,
     private router: Router,
-    private fb: FormBuilder
+    private formBuilder: FormBuilder
   ) {
     // Create FormGroup and corresponding FormControl
-    this.orderForm = this.fb.group({
+    this.orderForm = this.formBuilder.group({
       fullname: ['Phạm Hiền Nhân', Validators.required], // Fullname is required FormControl
       email: ['hiennhanlonggiang@gmail.com', Validators.email], // Use email validator for email FormControl
       phone_number: [

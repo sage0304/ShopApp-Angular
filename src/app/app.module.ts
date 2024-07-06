@@ -9,6 +9,7 @@ import { OrderComponent } from './components/order/order.component';
 import { OrderDetailComponent } from './components/order-detail/order-detail.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -18,8 +19,7 @@ import {
 } from '@angular/common/http';
 import {TokenInterceptor} from './interceptors/token.interceptor';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app/app.component'
-
+import { AppComponent } from './app/app.component';
 
 @NgModule({
   declarations: [    
@@ -31,6 +31,7 @@ import { AppComponent } from './app/app.component'
     OrderDetailComponent, 
     LoginComponent, 
     RegisterComponent, 
+    UserProfileComponent,
     AppComponent
   ],
   imports: [
@@ -50,12 +51,6 @@ import { AppComponent } from './app/app.component'
   ],
   bootstrap: [
     AppComponent
-    // HomeComponent,
-    // DetailProductComponent,
-    // OrderComponent,
-    // OrderDetailComponent,
-    // LoginComponent,
-    // RegisterComponent
   ]
 })
 export class AppModule { }
