@@ -34,11 +34,12 @@
                                 [placement]="'bottom'"
                             >
                             <a 
-                            class="nav-link" 
-                            routerLink="/profile" 
-                            [ngbPopover]="popoverContent"
-                            (click)="togglePopover($event)">
-                            {{ userResponse.fullname }}
+                                class="nav-link" 
+                                routerLink="/profile" 
+                                [ngbPopover]="popoverContent"
+                                (click)="togglePopover($event)"
+                            >
+                                {{ userResponse.fullname }}
                             </a>
                                 <ng-template #popoverContent>
                                     <div class="popover-list">
@@ -51,7 +52,7 @@
                         </ng-container>
                         <ng-container *ngIf="!userResponse">
                             <a class="nav-link" routerLink="/login">
-                                Sign in
+                                Log in
                             </a>
                         </ng-container>
                     </li>
