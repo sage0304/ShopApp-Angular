@@ -20,6 +20,7 @@ import {
 import {TokenInterceptor} from './interceptors/token.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app/app.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [    
@@ -32,7 +33,8 @@ import { AppComponent } from './app/app.component';
     LoginComponent, 
     RegisterComponent, 
     UserProfileComponent,
-    AppComponent
+    AppComponent,
+    AdminComponent
   ],
   imports: [
     ReactiveFormsModule,

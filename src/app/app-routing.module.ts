@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "./guards/auth.guard";
+import { AdminGuard } from "./guards/admin.guard";
 
 import { HomeComponent } from "./components/home/home.component";
 import { LoginComponent } from "./components/login/login.component";
@@ -9,10 +10,12 @@ import { DetailProductComponent } from "./components/detail-product/detail-produ
 import { OrderComponent } from "./components/order/order.component";
 import { OrderDetailComponent } from "./components/order-detail/order-detail.component";
 import { UserProfileComponent } from "./components/user-profile/user-profile.component";
+import { AdminComponent } from "./components/admin/admin.component";
 
 const routes: Routes = [
     { path : '', component: HomeComponent },
     { path : 'login', component: LoginComponent },
+    { path : 'admin', component: AdminComponent, canActivate: [AdminGuard] },
     { path : 'register', component: RegisterComponent },
     { path : 'products/:id', component: DetailProductComponent },
     { path : 'orders', component: OrderComponent, canActivate: [AuthGuard]},

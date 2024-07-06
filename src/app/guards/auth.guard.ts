@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivateFn } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateFn } from '@angular/router';
 import { TokenService } from 'src/app/services/token.service';
-import { Router } from '@angular/router'; // Đảm bảo bạn đã import Router ở đây.
+import { Router } from '@angular/router'; 
 import { inject } from '@angular/core';
 
 @Injectable({
@@ -26,7 +26,9 @@ export class AuthGuard {
 }
 
 // Sử dụng functional guard như sau:
-export const AuthGuardFn: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean => {
+export const AuthGuardFn: CanActivateFn = (
+  next: ActivatedRouteSnapshot, 
+  state: RouterStateSnapshot): boolean => {
   debugger
   return inject(AuthGuard).canActivate(next, state);
 }
