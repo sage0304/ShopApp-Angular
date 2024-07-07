@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { OrderResponse } from 'src/app/responses/order/order.response';
 import { OrderService } from 'src/app/services/order.service';
 
@@ -18,9 +19,11 @@ export class OrderAdminComponent implements OnInit{
 
   constructor(
     private orderService: OrderService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    debugger
     this.getAllOrders(this.keyword, this.currentPage, this.itemsPerPage);
   }
 
@@ -65,5 +68,10 @@ export class OrderAdminComponent implements OnInit{
 
   deleteOrder(id:number) {
     
+  }
+
+  viewDetails(order: OrderResponse) {
+    debugger
+    this.router.navigate(['admin/orders', order.id]); 
   }
 }

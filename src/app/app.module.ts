@@ -20,10 +20,7 @@ import {
 import {TokenInterceptor} from './interceptors/token.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app/app.component';
-import { AdminComponent } from './components/admin/admin.component';
-import { OrderAdminComponent } from './components/admin/order.admin/order.admin.component';
-import { ProductAdminComponent } from "./components/admin/product/product.admin.component";
-import { CategoryAdminComponent } from "./components/admin/category/category.admin.component";
+import { AdminModule } from './components/admin/admin.module';
 
 @NgModule({
   declarations: [    
@@ -36,12 +33,7 @@ import { CategoryAdminComponent } from "./components/admin/category/category.adm
     LoginComponent, 
     RegisterComponent, 
     UserProfileComponent,
-    AppComponent,
-    //Admin
-    AdminComponent,
-    OrderAdminComponent,
-    ProductAdminComponent,
-    CategoryAdminComponent
+    AppComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -49,7 +41,8 @@ import { CategoryAdminComponent } from "./components/admin/category/category.adm
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    AdminModule
   ],
   providers: [
     {

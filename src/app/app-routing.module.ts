@@ -11,9 +11,6 @@ import { OrderComponent } from "./components/order/order.component";
 import { OrderDetailComponent } from "./components/order-detail/order-detail.component";
 import { UserProfileComponent } from "./components/user-profile/user-profile.component";
 import { AdminComponent } from "./components/admin/admin.component";
-import { OrderAdminComponent } from "./components/admin/order.admin/order.admin.component";
-import { ProductAdminComponent } from "./components/admin/product/product.admin.component";
-import { CategoryAdminComponent } from "./components/admin/category/category.admin.component";
 
 const routes: Routes = [
     { path : '', component: HomeComponent },
@@ -27,19 +24,7 @@ const routes: Routes = [
     { path : 'admin', 
         component: AdminComponent, 
         canActivate: [AdminGuardFn] 
-    },
-    { path : 'admin/orders', 
-        component: OrderAdminComponent, 
-        canActivate: [AdminGuardFn] 
-    },
-    { path : 'admin/products', 
-        component: ProductAdminComponent, 
-        canActivate: [AdminGuardFn] 
-    },
-    { path : 'admin/categories', 
-        component: CategoryAdminComponent, 
-        canActivate: [AdminGuardFn] 
-    },
+    }
 ];
 
 @NgModule({
