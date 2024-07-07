@@ -21,6 +21,9 @@ import {TokenInterceptor} from './interceptors/token.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app/app.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { OrderAdminComponent } from './components/admin/order.admin/order.admin.component';
+import { ProductAdminComponent } from "./components/admin/product/product.admin.component";
+import { CategoryAdminComponent } from "./components/admin/category/category.admin.component";
 
 @NgModule({
   declarations: [    
@@ -34,7 +37,11 @@ import { AdminComponent } from './components/admin/admin.component';
     RegisterComponent, 
     UserProfileComponent,
     AppComponent,
-    AdminComponent
+    //Admin
+    AdminComponent,
+    OrderAdminComponent,
+    ProductAdminComponent,
+    CategoryAdminComponent
   ],
   imports: [
     ReactiveFormsModule,

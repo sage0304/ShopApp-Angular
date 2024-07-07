@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TokenService } from 'src/app/services/token.service';
-import { UserService } from '../../services/user.service';
+import { UserService } from 'src/app/services/user.service';
 import { UserResponse } from 'src/app/responses/user/user.response';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -17,7 +16,6 @@ export class HeaderComponent implements OnInit{
 
   constructor(
     private userService: UserService,   
-    private popoverConfig: NgbPopoverConfig,  
     private tokenService: TokenService,
     private router: Router  
   ) {
