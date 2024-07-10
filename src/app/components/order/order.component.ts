@@ -26,9 +26,13 @@ export class OrderComponent implements OnInit {
     phone_number: '',
     address: '',
     note: '',
+    status: 'pending',
     total_money: 0, // Update after calculate total (coupon or not)
     payment_method: 'cod', // Default (COD)
     shipping_method: 'express', // Default (Express)
+    shipping_address: '',
+    shipping_date: new Date(),
+    tracking_number: '',
     coupon_code: '',
     cart_items: [],
   };

@@ -14,6 +14,7 @@ export interface OrderResponse {
     shipping_method: string;
     shipping_address: string;
     shipping_date: Date;
+    tracking_number: string;
     payment_method: string;
     order_details: OrderDetail[]
 }

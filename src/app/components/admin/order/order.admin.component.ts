@@ -67,7 +67,22 @@ export class OrderAdminComponent implements OnInit{
   }
 
   deleteOrder(id:number) {
-    
+    const confirmation = window.confirm('Are you sure you want to delete this order?');
+    if(confirmation) {
+      this.orderService.deleteOrder(id).subscribe({
+        next: (response: any) => {
+          debugger
+          location.reload();
+        },
+        complete: () => {
+          debugger;
+        },
+        error: (error: any) => {
+          debugger;
+          console.error('Error deleting order:', error);
+        }
+      });
+    }
   }
 
   viewDetails(order: OrderResponse) {

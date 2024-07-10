@@ -25,6 +25,7 @@ export class OrderDetailComponent implements OnInit{
     shipping_method: '',
     shipping_address: '',
     shipping_date: new Date(),
+    tracking_number: '',
     payment_method: '',
     order_details: []
   };
@@ -63,6 +64,7 @@ export class OrderDetailComponent implements OnInit{
         });
         this.orderResponse.payment_method = response.payment_method;
         this.orderResponse.shipping_method = response.shipping_method;
+        this.orderResponse.tracking_number = response.tracking_number;
         this.orderResponse.status = response.status;
         this.orderResponse.total_money = response.total_money;
         this.orderResponse.shipping_date = new Date(

@@ -1,5 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { FormsModule } from '@angular/forms';
+
 import { AdminComponent } from "./admin.component";
 import { OrderAdminComponent } from "./order/order.admin.component";
 import { DetailOrderAdminComponent } from "./detail-order/detail.order.admin.component";
@@ -17,9 +19,9 @@ import { AdminRoutingModule } from "./admin-routing.module";
     ],
     imports: [
         AdminRoutingModule,
-        CommonModule
+        CommonModule,
+        FormsModule
     ],
-
 })
 
 export class AdminModule { }
